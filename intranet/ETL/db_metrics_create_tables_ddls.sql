@@ -1,0 +1,425 @@
+-- MySQL dump 10.13  Distrib 5.6.11, for osx10.7 (i386)
+--
+-- Host: localhost    Database: INTRANET
+-- ------------------------------------------------------
+-- Server version	5.6.11
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Current Database: `INTRANET`
+--
+
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ `INTRANET` /*!40100 DEFAULT CHARACTER SET latin1 */;
+
+USE `INTRANET`;
+
+--
+-- Table structure for table `CONS_METRICS_ALEXA_GLOBAL_DAY`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_ALEXA_GLOBAL_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_ALEXA_GLOBAL_DAY` (
+  `DATE` date NOT NULL,
+  `GLOBAL_RANK` int(11) NOT NULL,
+  `BRA_RANK` int(11) NOT NULL,
+  `USA_RANK` int(11) NOT NULL,
+  PRIMARY KEY (`DATE`),
+  UNIQUE KEY `DATE` (`DATE`),
+  KEY `DATE_2` (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_ALEXA_TOP10RANK_DAY`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_ALEXA_TOP10RANK_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_ALEXA_TOP10RANK_DAY` (
+  `DATE` date NOT NULL,
+  `RANK_POSITION_NUMBER` int(11) NOT NULL,
+  `RANK_POSITION_COUNTRY` varchar(255) NOT NULL,
+  `RANK_POSITION_TRAFFIC_PERCENT` float NOT NULL,
+  `RANK_POSITION_RANKING` int(11) NOT NULL,
+  PRIMARY KEY (`DATE`,`RANK_POSITION_NUMBER`,`RANK_POSITION_COUNTRY`,`RANK_POSITION_TRAFFIC_PERCENT`,`RANK_POSITION_RANKING`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_FOLLOW`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_FOLLOW`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_FOLLOW` (
+  `DATE` date NOT NULL,
+  `TOTAL_FOLLOWING` int(11) DEFAULT NULL,
+  `TOTAL_FOLLOWED` int(11) DEFAULT NULL,
+  `AVG_FOLLOWING_PROFILE` float DEFAULT NULL,
+  `AVG_FOLLOWED_PROFILE` float DEFAULT NULL,
+  `WAVG_FOLLOWING_PROFILE` float DEFAULT NULL,
+  `WAVG_FOLLOWED_PROFILE` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Folllowing';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_LIKES`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_LIKES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_LIKES` (
+  `DATE` date NOT NULL,
+  `TOTAL_LIKES_TECKS` int(11) DEFAULT NULL,
+  `TOTAL_LIKES_PROFILES` int(11) DEFAULT NULL,
+  `AVG_LIKES_TECK` float DEFAULT NULL,
+  `AVG_LIKES_PROFILE` float DEFAULT NULL,
+  `WAVG_LIKES_TECK` float DEFAULT NULL,
+  `WAVG_LIKES_PROFILE` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Likes';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_ONLINE_USERS`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_ONLINE_USERS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_ONLINE_USERS` (
+  `DATE` date NOT NULL,
+  `TOTAL_UNIQUE_VISITOR_DAY` int(11) NOT NULL,
+  `TOTAL_USERS_KEEPMELOGGED` int(11) NOT NULL,
+  `TOTAL_LAST_LOGIN_1WEEK` int(11) NOT NULL,
+  `TOTAL_LAST_LOGIN_1MONTH` int(11) NOT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_PAGEVIEWS_EXPECTED`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_PAGEVIEWS_EXPECTED`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_PAGEVIEWS_EXPECTED` (
+  `DATE` date NOT NULL,
+  `TOTAL_PROFILES_WO_PAGEVIEWS` int(11) DEFAULT NULL,
+  `PERC_PROFILES_WO_PAGEVIEWS` float DEFAULT NULL,
+  `TOTAL_EXPECTED_PAGEVIEWS` int(11) DEFAULT NULL,
+  `AVG_PAGEVIEWS_TECK` float DEFAULT NULL,
+  `AVG_PAGEVIEWS_PROFILE` float DEFAULT NULL,
+  `TOTAL_TECKS_WO_PAGEVIEWS` int(11) DEFAULT NULL,
+  `PERC_TECKS_WO_PAGEVIEWS` float DEFAULT NULL,
+  `WAVG_PAGEVIEWS_VIEWED_TECKS` float DEFAULT NULL,
+  `WAVG_PAGEVIEWS_VIEWED_PROFILES` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Expected Pageviews';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_PROFILES`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_PROFILES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_PROFILES` (
+  `DATE` date NOT NULL,
+  `TOTAL_USERS` int(11) DEFAULT NULL,
+  `TOTAL_PROFILES` int(11) DEFAULT NULL,
+  `TOTAL_ACTIVE_PROFILES` int(11) DEFAULT NULL,
+  `AVG_PROFILES_USER` float DEFAULT NULL,
+  `AVG_ACTIVE_PROFILES_USER` float DEFAULT NULL,
+  `TOTAL_USERS_W1_PROFILES` int(11) DEFAULT NULL,
+  `WAVG_PROFILES_USERS` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Users and Profiles';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_REVENUE`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_REVENUE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_REVENUE` (
+  `DATE` date NOT NULL DEFAULT '0000-00-00',
+  `TOTAL_EXPECTED_REVENUE_TODATE` float DEFAULT NULL,
+  `TOTAL_ACTUAL_REVENUE_TODATE` float DEFAULT NULL,
+  `TOTAL_EXPECTED_REVENUE_DAY` float DEFAULT NULL,
+  `TOTAL_ACTUAL_REVENUE_DAY` float DEFAULT NULL,
+  `TOTAL_PENDING_TODATE` float DEFAULT NULL,
+  `TOTAL_VERIFIED_TODATE` float DEFAULT NULL,
+  `TOTAL_REQUESTED_TODATE` float DEFAULT NULL,
+  `TOTAL_WITHDRAWN_TODATE` float DEFAULT NULL,
+  `TOTAL_ERROR_TODATE` float DEFAULT NULL,
+  `AVG_REVENUE_PROFILE` float DEFAULT NULL,
+  `AVG_REVENUE_TECK` float DEFAULT NULL,
+  `WAVG_REVENUE_VIEWED_PROFILES` float DEFAULT NULL,
+  `WAVG_REVENUE_VIEWED_TECKS` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Revenue as provided by Google';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_SHARES`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_SHARES`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_SHARES` (
+  `DATE` date NOT NULL,
+  `TOTAL_SHARES` int(11) DEFAULT NULL,
+  `AVG_SHARES_TECK` float DEFAULT NULL,
+  `TOTAL_TECKS_WO_SHARES` int(11) DEFAULT NULL,
+  `WAVG_SHARES_TECK` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='CONS_METRICS_SHARE';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_SHARES_SN`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_SHARES_SN`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_SHARES_SN` (
+  `DATE` date NOT NULL,
+  `TOTAL_SHARES_FB` int(11) DEFAULT NULL,
+  `TOTAL_SHARES_GP` int(11) DEFAULT NULL,
+  `TOTAL_SHARES_TW` int(11) DEFAULT NULL,
+  `TOTAL_SHARES_LI` int(11) DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_TECKS`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_TECKS`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_TECKS` (
+  `DATE` date NOT NULL,
+  `TOTAL_TECKS` int(11) DEFAULT NULL,
+  `TOTAL_PUBLISHED_TECKS` int(11) DEFAULT NULL,
+  `AVG_TECKS_PROFILE` float DEFAULT NULL,
+  `AVG_TECKS_ACTIVE_PROFILE` float DEFAULT NULL,
+  `TOTAL_PROFILES_WO_TECKS` int(11) DEFAULT NULL,
+  `RT_TECKS_PUBTECKS` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Tecks';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_TECKS_LANG`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_TECKS_LANG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_TECKS_LANG` (
+  `DATE` date NOT NULL,
+  `TOTAL_TECKS_AR` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_DE` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_EN` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_ES` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_FR` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_HE` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_HI` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_IT` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_JP` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_KO` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_PT` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_RU` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_ZH` int(11) DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_TECKS_TYPE`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_TECKS_TYPE`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_TECKS_TYPE` (
+  `DATE` date NOT NULL,
+  `TOTAL_TECKS_AUDIO` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_DOCUMENT` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_IMAGE` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_TEXT` int(11) DEFAULT NULL,
+  `TOTAL_TECKS_VIDEO` int(11) DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Teck Type';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `CONS_METRICS_USERS_LANG`
+--
+
+DROP TABLE IF EXISTS `CONS_METRICS_USERS_LANG`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `CONS_METRICS_USERS_LANG` (
+  `DATE` date NOT NULL,
+  `TOTAL_USERS_LANG` int(11) NOT NULL DEFAULT '0',
+  `LANG` varchar(5) NOT NULL DEFAULT '',
+  PRIMARY KEY (`DATE`,`TOTAL_USERS_LANG`,`LANG`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Users per Language';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `DELTA_METRICS_PROFILES_DAY`
+--
+
+DROP TABLE IF EXISTS `DELTA_METRICS_PROFILES_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DELTA_METRICS_PROFILES_DAY` (
+  `DATE` date NOT NULL,
+  `DELTA_USERS_DAY` int(11) NOT NULL,
+  `DELTA_PROFILES_DAY` int(11) NOT NULL,
+  `DELTA_ACTIVE_PROFILES_DAY` int(11) NOT NULL,
+  `AVG_PROFILES_USER_DAY` float NOT NULL,
+  `AVG_ACTIVE_PROFILES_USER_DAY` float NOT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `DELTA_METRICS_REVENUE_DAY`
+--
+
+DROP TABLE IF EXISTS `DELTA_METRICS_REVENUE_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DELTA_METRICS_REVENUE_DAY` (
+  `DATE` date NOT NULL DEFAULT '0000-00-00',
+  `TOTAL_EXPECTED_REVENUE_DAY` float DEFAULT NULL,
+  `TOTAL_ACTUAL_REVENUE_DAY` float DEFAULT NULL,
+  `TOTAL_PENDING_DAY` float DEFAULT NULL,
+  `TOTAL_VERIFIED_DAY` float DEFAULT NULL,
+  `TOTAL_REQUESTED_DAY` float DEFAULT NULL,
+  `TOTAL_WITHDRAWN_DAY` float DEFAULT NULL,
+  `TOTAL_ERROR_DAY` float DEFAULT NULL,
+  `AVG_REVENUE_PROFILE` float DEFAULT NULL,
+  `AVG_REVENUE_TECK` float DEFAULT NULL,
+  `WAVG_REVENUE_VIEWED_PROFILES` float DEFAULT NULL,
+  `WAVG_REVENUE_VIEWED_TECKS` float DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Revenue as provided by Google';
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `DELTA_METRICS_TECKS_DAY`
+--
+
+DROP TABLE IF EXISTS `DELTA_METRICS_TECKS_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DELTA_METRICS_TECKS_DAY` (
+  `DATE` date NOT NULL,
+  `DELTA_TECKS_DAY` int(11) DEFAULT NULL,
+  `DELTA_PUBLISHED_TECKS_DAY` int(11) DEFAULT NULL,
+  `RT_TECKS_PUBTECKS_DAY` float DEFAULT NULL,
+  `AVG_TECKS_PROFILE_DAY` float DEFAULT NULL,
+  `AVG_TECKS_ACTIVE_PROFILES_DAY` float DEFAULT NULL,
+  `DELTA_PROFILE_WO_TECKS_DAY` int(11) NOT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `DELTA_METRICS_TECKS_LANG_DAY`
+--
+
+DROP TABLE IF EXISTS `DELTA_METRICS_TECKS_LANG_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DELTA_METRICS_TECKS_LANG_DAY` (
+  `DATE` date NOT NULL,
+  `DELTA_TECKS_AR_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_DE_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_EN_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_ES_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_FR_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_HE_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_HI_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_IT_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_JP_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_KO_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_PT_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_RU_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_ZH_DAY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `DELTA_METRICS_TECKS_TYPE_DAY`
+--
+
+DROP TABLE IF EXISTS `DELTA_METRICS_TECKS_TYPE_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DELTA_METRICS_TECKS_TYPE_DAY` (
+  `DATE` date NOT NULL,
+  `DELTA_TECKS_AUDIO_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_IMAGE_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_TEXT_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_DOCUMENT_DAY` int(11) DEFAULT NULL,
+  `DELTA_TECKS_VIDEO_DAY` int(11) DEFAULT NULL,
+  PRIMARY KEY (`DATE`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `DELTA_METRICS_USERS_LANG_DAY`
+--
+
+DROP TABLE IF EXISTS `DELTA_METRICS_USERS_LANG_DAY`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `DELTA_METRICS_USERS_LANG_DAY` (
+  `DATE` date NOT NULL,
+  `DELTA_USERS_LANG_DAY` int(11) NOT NULL DEFAULT '0',
+  `LANG` varchar(5) NOT NULL DEFAULT '',
+  PRIMARY KEY (`DATE`,`DELTA_USERS_LANG_DAY`,`LANG`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Consolidated Metrics for Users per Language';
+/*!40101 SET character_set_client = @saved_cs_client */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2013-07-25 16:55:33
